@@ -28,13 +28,6 @@ export const site = {
 
   atendeDesde: 2015,
 
-  // TODO: formação real
-  formacao: [
-    { ano: '2013', o_que: 'Graduação em Psicologia', onde: 'Universidade de Exemplo — Rio de Janeiro' },
-    { ano: '2016', o_que: 'Formação em Gestalt-terapia', onde: 'Instituto de Exemplo — três anos, com prática supervisionada' },
-    { ano: '2019', o_que: 'Especialização em clínica de adultos', onde: 'Instituição de Exemplo' },
-    { ano: 'Hoje', o_que: 'Supervisão clínica e terapia pessoal contínuas', onde: 'Prática permanente, não pontual' },
-  ],
 };
 
 export const waLink = (msg = `Olá, ${site.nome.split(' ')[0]}. Vi seu site e gostaria de conversar.`) =>
