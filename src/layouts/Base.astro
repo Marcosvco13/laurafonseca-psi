@@ -1,0 +1,67 @@
+---
+import '@fontsource/great-vibes';
+import '@fontsource/lato/300.css';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/400-italic.css';
+import '@fontsource/lato/700.css';
+import '@fontsource-variable/montserrat';
+import '../styles/global.css';
+import { site } from '../data/site';
+
+const {
+  title = `${site.nome} · Psicóloga em ${site.cidade} · ${site.abordagem} online e presencial`,
+  description = `${site.titulo} ${site.nome} (CRP ${site.crp}). ${site.abordagem} para adultos, online e no consultório em ${site.cidade}-${site.uf}. Sessões semanais de 50 minutos.`,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'MedicalBusiness'],
+  name: `${site.nome} — ${site.titulo}`,
+  description,
+  url: canonical.href,
+  telephone: `+${site.whatsapp}`,
+  email: site.email,
+  sameAs: [`https://instagram.com/${site.instagram}`],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.endereco.rua,
+    addressLocality: site.cidade,
+    addressRegion: site.uf,
+    postalCode: site.endereco.cep,
+    addressCountry: 'BR',
+  },
+  areaServed: [{ '@type': 'City', name: site.cidade }, { '@type': 'Country', name: 'Brasil' }],
+  openingHours: site.horariosSchema,
+  employee: {
+    '@type': 'Person',
+    name: site.nome,
+    jobTitle: site.titulo,
+    identifier: `CRP ${site.crp}`,
+  },
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#F2EAE4" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta name="generator" content={Astro.generator} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

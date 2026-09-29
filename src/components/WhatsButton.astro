@@ -1,0 +1,11 @@
+---
+import WhatsIcon from './WhatsIcon.astro';
+import { waLink } from '../data/site';
+
+const { class: className = 'btn btn-solid', label = 'Conversar no WhatsApp', icon = true } = Astro.props;
+---
+
+<a class={className} href={waLink()} target="_blank" rel="noopener">
+  {icon && <WhatsIcon />}
+  {label}
+</a>

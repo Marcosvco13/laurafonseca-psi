@@ -1,0 +1,342 @@
+---
+import Base from '../layouts/Base.astro';
+import Mark from '../components/Mark.astro';
+import Petal from '../components/Petal.astro';
+import WhatsButton from '../components/WhatsButton.astro';
+import WhatsIcon from '../components/WhatsIcon.astro';
+import { site, waLink } from '../data/site';
+
+const primeiroNome = site.nome.split(' ')[0];
+
+const reconhecimento = [
+  'Por fora tudo funciona. Por dentro, o cansaço não passa.',
+  'Você sabe nomear o que sente — e ainda assim nada muda.',
+  'As mesmas cenas se repetem, com pessoas diferentes.',
+  'Uma decisão está parada há meses esperando clareza.',
+  'Você está numa transição e perdeu a referência de quem é agora.',
+  'Dar conta por conta própria parou de dar conta.',
+];
+
+const pilares = [
+  {
+    titulo: 'O aqui e agora',
+    texto: 'Em vez de reconstruir o passado à procura de uma causa, a gente olha como ele aparece agora: no que você conta, no que você contorna, no corpo, nesta sala. O passado importa pelo que ainda faz no presente.',
+  },
+  {
+    titulo: 'A relação como instrumento',
+    texto: 'O que acontece entre nós na sessão é material de trabalho. A forma como você se relaciona comigo costuma ter parentesco com a forma como você se relaciona lá fora — e isso a gente pode ver junto, ao vivo, em vez de só no relato.',
+  },
+  {
+    titulo: 'Consciência antes de mudança',
+    texto: 'A Gestalt não empurra mudança. Parte de uma aposta mais simples: quando você percebe com clareza o que está fazendo e para quê, mudar deixa de ser esforço de vontade e passa a ser escolha.',
+  },
+];
+
+const temas = [
+  'Ansiedade', 'Crises de angústia', 'Luto', 'Fim de relacionamento', 'Relações familiares',
+  'Transição de carreira', 'Autocobrança e perfeccionismo', 'Autoestima', 'Adoecimento e diagnóstico',
+  'Maternidade e parentalidade', 'Sexualidade e identidade', 'Autoconhecimento sem queixa definida',
+];
+
+const passos = [
+  {
+    titulo: 'Você manda uma mensagem',
+    texto: 'Em poucas linhas, o que está acontecendo e se prefere online ou presencial. Não precisa se explicar bem. Respondo em até 24 horas, em dia útil.',
+  },
+  {
+    titulo: 'A gente marca uma primeira conversa',
+    texto: 'Cerca de trinta minutos, por vídeo. Serve para você me conhecer, contar o que trouxe e perguntar o que quiser — inclusive sobre como eu trabalho. Nenhum compromisso vem depois dela.',
+  },
+  {
+    titulo: 'Escolhemos um horário fixo',
+    texto: 'Uma sessão por semana, no mesmo dia e horário. A regularidade não é burocracia: é o que permite que um processo se sustente em vez de recomeçar toda vez.',
+  },
+];
+
+const faq = [
+  {
+    p: 'Nunca fiz terapia. Preciso saber o que falar?',
+    r: 'Não. Uma parte considerável do trabalho é justamente descobrir o que você tem a dizer. Chegar sem assunto, ou com a sensação de que "não é nada demais", é um ponto de partida tão legítimo quanto qualquer outro.',
+  },
+  {
+    p: 'Terapia online funciona do mesmo jeito?',
+    r: 'Funciona, e é uma modalidade regulamentada pelo Conselho Federal de Psicologia. O que muda é a logística, não o trabalho: mesma duração, mesma frequência, mesmo sigilo. Peço só que você esteja num lugar onde possa falar sem ser ouvido e sem interrupção — isso faz mais diferença do que a qualidade da câmera.',
+  },
+  {
+    p: 'Quanto tempo dura um processo?',
+    r: 'Não tem prazo definido, e eu desconfio de quem promete um. Há questões que se organizam em alguns meses e outras que pedem mais tempo. O que a gente faz é revisitar isso periodicamente, em voz alta: onde você chegou, o que ainda está aberto, se faz sentido seguir.',
+  },
+  {
+    p: 'Você atende por plano de saúde?',
+    r: 'Não atendo por convênio. Emito recibo com meu nome e CRP, que serve para solicitar reembolso onde o seu plano prevê e para a declaração de imposto de renda.',
+  },
+  {
+    p: 'O que eu falo na sessão fica entre nós?',
+    r: 'Fica. O sigilo é obrigação prevista no Código de Ética Profissional do Psicólogo e vale também para as sessões online. As únicas exceções são as situações em que a lei exige quebra — risco à vida, sua ou de outra pessoa — e, mesmo nelas, eu compartilho o mínimo necessário e converso com você sobre isso antes, sempre que for possível.',
+  },
+  {
+    p: 'E se eu não me adaptar a você?',
+    r: 'Então a gente conversa sobre isso, e você não precisa desaparecer para encerrar. Não me adaptar a um terapeuta é informação clínica, não fracasso. Se for o caso, indico colegas com outros perfis e outras abordagens.',
+  },
+  {
+    p: 'Posso mudar de online para presencial depois?',
+    r: 'Pode, nos dois sentidos, conforme o horário disponível. Algumas pessoas alternam por semana — presencial quando dá, vídeo quando a agenda aperta — e isso funciona bem desde que o horário se mantenha.',
+  },
+];
+---
+
+<Base>
+  <nav class="nav">
+    <div class="shell nav-in">
+      <a class="brand" href="#top">
+        <Mark />
+        <span class="brand-text">
+          <span class="brand-name">{site.nome}</span>
+          <span class="brand-crp">{site.titulo} · CRP {site.crp}</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#abordagem">Gestalt</a>
+        <a href="#atendimento">Atendimento</a>
+        <a href="#como">Como funciona</a>
+        <a href="#duvidas">Dúvidas</a>
+      </div>
+      <WhatsButton label="Conversar" icon={false} />
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="shell hero-in">
+      <div>
+        <span class="hero-signature">{site.nome}</span>
+        <span class="hero-role">{site.titulo} · {site.abordagem}</span>
+        <h1>Talvez não seja hora de respostas. Talvez seja hora de <em>se escutar</em>.</h1>
+        <p class="hero-sub">
+          Terapia para adultos, online e no consultório em {site.cidade}, no Rio de Janeiro. Um espaço para olhar o que está acontecendo com você — no tempo que isso pedir.
+        </p>
+        <div class="hero-actions">
+          <WhatsButton />
+          <a class="btn btn-ghost" href="#como">Como funciona</a>
+        </div>
+        <p class="hero-meta">
+          <span>Sessões de 50 minutos</span>
+          <span>Atendimento semanal</span>
+          <span>Online em todo o Brasil</span>
+        </p>
+      </div>
+      {/* TODO: trocar por <Image> de src/assets quando a foto chegar */}
+      <div class="photo photo-petal">
+        <p class="photo-cap">Foto 1 — retrato em luz natural, rosto centralizado, com respiro nas bordas</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="recog">
+    <div class="shell recog-in">
+      <div class="recog-lead">
+        <p class="eyebrow">Para quem é</p>
+        <h2>Você pode estar aqui se…</h2>
+        <p>Nada disso é diagnóstico, e nada disso precisa estar organizado antes de você me procurar. Chegar sem saber explicar também é um começo.</p>
+      </div>
+      <ul class="recog-list">
+        {reconhecimento.map((frase) => (
+          <li><Petal /><span>{frase}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="shell split">
+      <div class="photo photo-petal-alt">
+        <p class="photo-cap">Foto 2 — você no consultório, em movimento, sem olhar para a câmera</p>
+      </div>
+      <div class="prose">
+        <p class="eyebrow">Sobre mim</p>
+        <h2 style="font-size: var(--step-3); margin-bottom: 22px;">Sou {primeiroNome}, psicóloga clínica com formação em Gestalt-terapia.</h2>
+        {/* TODO: texto real da Laura */}
+        <p>Atendo adultos desde {site.atendeDesde}, online e no consultório em {site.cidade}. Antes da clínica eu trabalhei em ambiente corporativo por sete anos — o que me deixou familiarizada com um tipo específico de sofrimento: o de quem entrega tudo o que se espera e sente que está desaparecendo no processo.</p>
+        <p>Não trabalho com conselho nem com roteiro. O que ofereço é presença: alguém que fica com você enquanto você olha o que normalmente não sobra tempo de olhar. Meu compromisso não é te entregar a minha versão da sua vida — é que você saia daqui enxergando a sua com mais nitidez.</p>
+        <p>Faço supervisão clínica e terapia pessoal de forma contínua. Não porque a formação exige, mas porque ninguém sustenta a escuta de outra pessoa sem ser escutado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="abordagem">
+    <div class="shell">
+      <p class="eyebrow">A abordagem</p>
+      <h2 style="font-size: var(--step-3); max-width: 30ch;">O que é Gestalt-terapia, sem jargão</h2>
+      <div class="approach-grid">
+        {pilares.map((p) => (
+          <div class="approach-item">
+            <Mark class="approach-petal" />
+            <h3>{p.titulo}</h3>
+            <p>{p.texto}</p>
+          </div>
+        ))}
+      </div>
+
+      <aside class="figura-fundo">
+        <svg class="ff-art" viewBox="0 0 220 150" role="img" aria-label="Ilustração: uma forma nítida em primeiro plano sobre formas difusas ao fundo">
+          <circle cx="52" cy="46" r="34" fill="var(--olive)" opacity="0.28" />
+          <circle cx="168" cy="104" r="42" fill="var(--olive)" opacity="0.28" />
+          <circle cx="120" cy="34" r="24" fill="var(--olive)" opacity="0.28" />
+          <circle cx="38" cy="116" r="26" fill="var(--olive)" opacity="0.28" />
+          <circle cx="110" cy="80" r="30" fill="var(--coral)" />
+        </svg>
+        <div>
+          <h3>Figura e fundo</h3>
+          <p>A Gestalt nasceu de uma descoberta sobre percepção: a cada instante alguma coisa se destaca — a figura — e todo o resto recua para o fundo. O sintoma quase sempre é a figura. O trabalho não é apagá-lo; é alargar o fundo até aparecer o que ele estava cobrindo.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="atendimento">
+    <div class="shell">
+      <p class="eyebrow">Atendimento</p>
+      <h2 style="font-size: var(--step-3); max-width: 28ch;">Duas formas de começar, o mesmo trabalho</h2>
+      <div class="mods-grid">
+        <article class="mod">
+          <span class="mod-tag">Online</span>
+          <h3>Por vídeo, de onde você estiver</h3>
+          <p>Mesma duração e mesma frequência do presencial. Sala fechada, com link único por sessão. Funciona bem para quem viaja, mora fora do país ou simplesmente não quer somar uma hora de estrada ao dia.</p>
+          <ul class="mod-specs">
+            <li><dfn>Duração</dfn> 50 minutos</li>
+            <li><dfn>Frequência</dfn> Semanal, dia e hora fixos</li>
+            <li><dfn>Plataforma</dfn> Vídeo em sala privada</li>
+            <li><dfn>Alcance</dfn> Brasil e exterior (fuso de Brasília)</li>
+          </ul>
+        </article>
+        <article class="mod">
+          <span class="mod-tag">Presencial</span>
+          <h3>No consultório, em {site.cidade}</h3>
+          <p>Sala com entrada independente e intervalo reservado antes e depois de cada horário, para você não cruzar com ninguém na chegada nem na saída. Estacionamento na própria rua.</p>
+          <ul class="mod-specs">
+            <li><dfn>Duração</dfn> 50 minutos</li>
+            <li><dfn>Frequência</dfn> Semanal, dia e hora fixos</li>
+            <li><dfn>Endereço</dfn> {site.endereco.rua}</li>
+            <li><dfn>Bairro</dfn> {site.endereco.bairro}, {site.cidade} — {site.uf}</li>
+            <li><dfn>Horários</dfn> {site.horarios}</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="temas">
+    <div class="shell">
+      <p class="eyebrow">Temas que acompanho</p>
+      <ul class="tags">
+        {temas.map((t) => <li>{t}</li>)}
+      </ul>
+      <p class="temas-note">Se o que você trouxe não está nesta lista, ainda vale mandar mensagem. Se eu não for a profissional indicada, digo isso na primeira conversa e encaminho para colegas de confiança.</p>
+    </div>
+  </section>
+
+  <section class="steps" id="como">
+    <div class="shell">
+      <p class="eyebrow">Como funciona</p>
+      <h2 style="font-size: var(--step-3); max-width: 26ch;">Do primeiro contato à primeira sessão</h2>
+      <ol class="steps-list">
+        {passos.map((p, i) => (
+          <li>
+            <span class="step-n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell split">
+      <div>
+        <p class="eyebrow">Formação e registro</p>
+        <h2 style="font-size: var(--step-3); max-width: 20ch;">Onde eu me formei e com quem me sustento</h2>
+      </div>
+      <div>
+        <ul class="creds-list">
+          {site.formacao.map((f) => (
+            <li>
+              <span class="creds-year">{f.ano}</span>
+              <span class="creds-what">{f.o_que}<small>{f.onde}</small></span>
+            </li>
+          ))}
+        </ul>
+        <p class="registro">
+          <strong>{site.nome}</strong> — psicóloga clínica inscrita no Conselho Regional de Psicologia do Rio de Janeiro sob o <strong>CRP {site.crp}</strong>. Atendimento online cadastrado no <strong>e-Psi</strong>, o sistema do Conselho Federal de Psicologia para prestação de serviços por meio de tecnologias da informação.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="duvidas">
+    <div class="shell">
+      <p class="eyebrow">Dúvidas frequentes</p>
+      <h2 style="font-size: var(--step-3); max-width: 24ch;">O que as pessoas perguntam antes de começar</h2>
+      <div class="faq-list">
+        {faq.map((item, i) => (
+          <details open={i === 0}>
+            <summary>{item.p}</summary>
+            <div class="faq-body"><p>{item.r}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <Mark />
+    <div class="shell final-in">
+      <h2>O primeiro passo é uma mensagem, não uma decisão.</h2>
+      <p>Você não precisa estar pronto para começar terapia. Precisa só estar disposto a uma primeira conversa.</p>
+      <WhatsButton />
+    </div>
+  </section>
+
+  <footer>
+    <div class="shell">
+      <div class="foot-in">
+        <div class="foot-col">
+          <span class="foot-sig">{site.nome}</span>
+          <span>{site.titulo} · CRP {site.crp}</span>
+          <span>{site.abordagem} para adultos</span>
+        </div>
+        <div class="foot-col">
+          <h4>Contato</h4>
+          <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">{site.telefone}</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={`https://instagram.com/${site.instagram}`} target="_blank" rel="noopener">@{site.instagram}</a>
+        </div>
+        <div class="foot-col">
+          <h4>Consultório</h4>
+          <span>{site.endereco.rua}</span>
+          <span>{site.endereco.bairro}, {site.cidade} — {site.uf}</span>
+          <span>{site.horarios}</span>
+        </div>
+        <div class="foot-col">
+          <h4>Navegar</h4>
+          <a href="#sobre">Sobre</a>
+          <a href="#atendimento">Atendimento</a>
+          <a href="#duvidas">Dúvidas</a>
+        </div>
+      </div>
+      <div class="foot-note">
+        <span>© {new Date().getFullYear()} {site.nome}</span>
+        <span>Atendimento online cadastrado no e-Psi (CFP)</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="wa">
+    <a href={waLink()} target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+      <WhatsIcon size={20} />
+      <span>WhatsApp</span>
+    </a>
+  </div>
+</Base>

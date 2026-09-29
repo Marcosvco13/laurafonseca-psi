@@ -1,0 +1,9 @@
+---
+// A marca de quatro pétalas do cartão de visitas. Cor vem de `currentColor`.
+const { class: className = '' } = Astro.props;
+const petala = 'M0 0 C 28 17 28 55 0 74 C -28 55 -28 17 0 0 Z';
+---
+
+<svg class:list={['mark', className]} viewBox="-86 -86 172 172" aria-hidden="true">
+  {[45, 135, 225, 315].map((r) => <path d={petala} transform={`rotate(${r})`} />)}
+</svg>
