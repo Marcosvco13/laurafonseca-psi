@@ -37,36 +37,3 @@ src/
     └── WhatsIcon.astro
 public/favicon.svg          A marca, em coral
 ```
-
-
-## TODO — antes de publicar
-- [ ] **Domínio definitivo** — registrar no Registro.br **no CPF da Laura** (`.com.br`, R$40/ano) e trocar o placeholder em `astro.config.mjs` **e** `site.ts`. **Não publicar com o placeholder:** o canonical e o JSON-LD apontariam para um domínio que não é dela. Nota: `.psi.br` é de provedor de internet, não de psicólogo — o de psicólogo é `.psc.br` (exige CPF + comprovação de CRP)
-
-## TODO — depois de publicar
-
-- [ ] **Google Business Profile** — "psicóloga Resende" no mapa traz mais gente que o site sozinho. Grátis
-- [ ] **Sitemap e robots** — `npx astro add sitemap` depois que o domínio existir
-- [ ] **Analytics sem cookie** — Cloudflare Web Analytics (grátis, dispensa banner de LGPD)
-- [ ] **Open Graph image** — imagem 1200×630 para o link ficar bonito no WhatsApp, onde ele mais vai circular. Hoje não há `og:image`
-- [ ] **Blog** (opcional, mas é a estratégia de SEO do nicho) — `src/content/` com Markdown; textos sobre ansiedade, Gestalt, terapia online, sempre dentro das regras do CFP
-
-## Domínio e hospedagem
-
-São duas coisas separadas. O site é estático (arquivos prontos, sem servidor, sem banco), então a hospedagem é grátis — só o domínio custa.
-
-| Item | Onde | Custo |
-|---|---|---|
-| Domínio `.com.br` | [Registro.br](https://registro.br) — único registrador oficial de `.br` | R$ 40/ano (ou R$ 174 por 5 anos) |
-| Hospedagem + CDN + SSL | Cloudflare Pages, plano gratuito | R$ 0 |
-
-**O domínio deve ser registrado no CPF da Laura**, não no de quem está desenvolvendo. É o ativo dela; se um dia trocar de dev, ela mantém o endereço.
-
-### Ordem de execução
-
-1. Registrar o domínio no Registro.br (CPF dela)
-2. Criar conta na Cloudflare e adicionar o domínio como *site* — ela devolve dois nameservers
-3. No painel do Registro.br, trocar os servidores DNS pelos da Cloudflare (propaga em minutos a algumas horas)
-4. Subir este repositório no GitHub
-5. Cloudflare Pages → *Connect to Git* → build command `npm run build`, output directory `dist`, sem adapter e sem variável de ambiente
-6. **Antes do build final**, trocar o domínio em `astro.config.mjs` e `src/data/site.ts`
-7. Pages → *Custom domains* → adicionar o domínio; o SSL sai automático e grátis
