@@ -4,6 +4,9 @@ import Mark from '../components/Mark.astro';
 import Petal from '../components/Petal.astro';
 import WhatsButton from '../components/WhatsButton.astro';
 import WhatsIcon from '../components/WhatsIcon.astro';
+import { Image } from 'astro:assets';
+import retrato from '../assets/laura-retrato.jpg';
+import consultorio from '../assets/laura-consultorio.jpeg'
 import { site, waLink } from '../data/site';
 
 const primeiroNome = site.nome.split(' ')[0];
@@ -58,7 +61,7 @@ const faq = [
   },
   {
     p: 'Terapia online funciona do mesmo jeito?',
-    r: 'Funciona, e é uma modalidade regulamentada pelo Conselho Federal de Psicologia. O que muda é a logística, não o trabalho: mesma duração, mesma frequência, mesmo sigilo. Peço só que você esteja num lugar onde possa falar sem ser ouvido e sem interrupção isso faz mais diferença do que a qualidade da câmera.',
+    r: 'Funciona, e é uma modalidade regulamentada pelo Conselho Federal de Psicologia. O que muda é a logística, não o trabalho: mesma frequência, mesmo sigilo. Peço só que você esteja num lugar onde possa falar sem ser ouvido e sem interrupção isso faz mais diferença do que a qualidade da câmera.',
   },
   {
     p: 'Quanto tempo dura um processo?',
@@ -122,9 +125,8 @@ const faq = [
           <span>Online em todo o Brasil</span>
         </p>
       </div>
-      {/* TODO: trocar por <Image> de src/assets quando a foto chegar */}
       <div class="photo photo-petal">
-        <p class="photo-cap">Foto 1 — retrato em luz natural, rosto centralizado, com respiro nas bordas</p>
+        <Image src={retrato} alt={`${site.nome}, psicóloga, sentada no consultório`} widths={[480, 800, 1086]} sizes="(max-width: 880px) 100vw, 460px" loading="eager" fetchpriority="high" />
       </div>
     </div>
   </header>
@@ -146,13 +148,12 @@ const faq = [
 
   <section id="sobre">
     <div class="shell split">
-      <div class="photo photo-petal-alt">
-        <p class="photo-cap">Foto 2 — você no consultório, em movimento, sem olhar para a câmera</p>
+      <div class="photo photo-petal">
+        <Image src={consultorio} alt={`${site.nome}, psicóloga, sentada no consultório`} widths={[480, 800, 1086]} sizes="(max-width: 880px) 100vw, 460px" loading="eager" fetchpriority="high" />
       </div>
       <div class="prose">
         <p class="eyebrow">Sobre mim</p>
         <h2 style="font-size: var(--step-3); margin-bottom: 22px;">Sou {primeiroNome}, psicóloga clínica com abordagem em Gestalt-terapia.</h2>
-        {/* TODO: texto real da Laura */}
         <p>Atendo adolescentes e adultos desde 2024, acompanhando diferentes histórias, momentos e formas de estar no mundo. Sou psicóloga desde 2021, com formação em Gestalt-terapia e pós-graduação em Arteterapia e em Obesidade e Emagrecimento.</p>
         <p>Antes de atuar na clínica, trabalhei na área de Recursos Humanos, em contato próximo com pessoas, relações e diferentes formas de viver o trabalho, essa experiência ampliou meu olhar para as histórias e os atravessamentos que cada pessoa carrega.</p>
         <p>Meu trabalho parte da presença e do encontro. É sobre oferecer um espaço de escuta onde seja possível desacelerar, entrar em contato com o que se sente e perceber aquilo que, na rotina, muitas vezes passa despercebido. Não se trata de oferecer respostas prontas, mas de construir, junto com cada pessoa, novas possibilidades de compreender a si mesma e sua forma de estar no mundo.</p>
@@ -184,7 +185,7 @@ const faq = [
         <article class="mod">
           <span class="mod-tag">Online</span>
           <h3>Por vídeo, de onde você estiver</h3>
-          <p>Mesma duração e mesma frequência do presencial. Sala fechada, com link único por sessão.</p>
+          <p>Mesma frequência do presencial. Sala fechada, com link único por sessão.</p>
           <ul class="mod-specs">
             <li><dfn>Duração</dfn> 50 minutos</li>
             <li><dfn>Frequência</dfn> Semanal, dia e hora fixos</li>
@@ -261,7 +262,7 @@ const faq = [
         <div class="foot-col">
           <span class="foot-sig">{site.nome}</span>
           <span>{site.titulo} · CRP {site.crp}</span>
-          <span>{site.abordagem} para adultos</span>
+          <span>{site.abordagem} para adolescentes e adultos</span>
         </div>
         <div class="foot-col">
           <h4>Contato</h4>
@@ -278,7 +279,6 @@ const faq = [
       </div>
       <div class="foot-note">
         <span>© {new Date().getFullYear()} {site.nome}</span>
-        <span>Atendimento online cadastrado no e-Psi (CFP)</span>
       </div>
     </div>
   </footer>

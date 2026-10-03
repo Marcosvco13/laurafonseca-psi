@@ -10,7 +10,7 @@ import { site } from '../data/site';
 
 const {
   title = `${site.nome} · Psicóloga em ${site.cidade} · ${site.abordagem} online e presencial`,
-  description = `${site.titulo} ${site.nome} (CRP ${site.crp}). ${site.abordagem} para adultos, online e no consultório em ${site.cidade}-${site.uf}. Sessões semanais de 50 minutos.`,
+  description = `${site.titulo} ${site.nome} (CRP ${site.crp}). ${site.abordagem} para adolescentes e adultos, online e no consultório em ${site.cidade}-${site.uf}. Sessões semanais.`,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
@@ -26,14 +26,11 @@ const jsonLd = {
   sameAs: [`https://instagram.com/${site.instagram}`],
   address: {
     '@type': 'PostalAddress',
-    streetAddress: site.endereco.rua,
     addressLocality: site.cidade,
     addressRegion: site.uf,
-    postalCode: site.endereco.cep,
     addressCountry: 'BR',
   },
   areaServed: [{ '@type': 'City', name: site.cidade }, { '@type': 'Country', name: 'Brasil' }],
-  openingHours: site.horariosSchema,
   employee: {
     '@type': 'Person',
     name: site.nome,
